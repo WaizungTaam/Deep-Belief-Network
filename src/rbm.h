@@ -16,7 +16,7 @@ Last modified: 2016-07-16
 class RBM {
 public:
   RBM() = default;
-  RBM(int, int);
+  // RBM(int, int);  // specificaly for DBN
   RBM(Matrix &, const Matrix &, Matrix &);  // specificaly for DBN, const is omitted in order to share the weight
   RBM(const RBM &) = default;
   RBM(RBM &&) = default;
@@ -26,9 +26,9 @@ public:
   void train(const Matrix &, double, int);
   Matrix prop_vh(const Matrix &);  // Specifically for DBM, turn private to be public
 private:
-  Matrix weight;
+  Matrix & weight;
   Matrix w_bias_vis;
-  Matrix w_bias_hid;
+  Matrix & w_bias_hid;
   // Matrix prop_vh(const Matrix &);
   Matrix prop_hv(const Matrix &);
   Matrix sample_vh(const Matrix &);
